@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('hotels', { title: 'Search Results hotels' });
-});
+const hotels_controlers= require('../controllers/hotels');
+
+/* GET costumes */
+
+router.get('/', hotels_controlers.hotels_view_all_Page );
 
 module.exports = router;
