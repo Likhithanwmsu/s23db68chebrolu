@@ -35,7 +35,7 @@ exports.hotels_list = async function(req, res) {
 exports.hotels_view_all_Page = async function(req, res) {
     try{
     thehotels = await hotels.find();
-    res.render('hotels', { title: 'hotels Search Results', results: thehotels });
+    res.render('hotels', { title: 'Search Results hotels', results: thehotels });
     }
     catch(err){
     res.status(500);
