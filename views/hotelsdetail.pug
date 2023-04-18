@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  - let hotelsid = toShow._id
+  - let hotels_location = toShow.hotels_location
+  - let hotels_numrooms = toShow.hotels_numrooms
+  - let hotels_rating = toShow.hotels_rating
+  div
+    div.row
+      div(class='hotelsAttr mr-3') hotels ID is:
+      div #{hotelsid}
+    div.row
+      div(class='hotelsAttr mr-3') hotels location is:
+      div #{hotels_location}
+    div.row
+      div(class='hotelsAttr mr-3') Number of rooms in hotels is:
+      div #{hotels_numrooms}
+    div.row
+      div(class='hotelsAttr mr-3') hotels rating is:
+      div #{hotels_rating}
