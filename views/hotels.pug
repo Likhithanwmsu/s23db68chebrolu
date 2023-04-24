@@ -1,14 +1,43 @@
-extends layout
+//- extends layout
 
+//- block content
+//-   h1= title
+//-   - let items = results
+//-   div(class="container-fluid")
+//-     div(class="row m-1")
+//-       each item in items
+//-         - let destination = `dispatch(\"/hotels/update?id=${item._id}\")`
+//-         div(class="row-sm-2", class="m-1") Item #{item.hotels_location}(#{item.hotels_numrooms}) is #{item.hotels_rating}
+//-         button.btn(class="btn-primary ml-1", onclick= destination) Update
+
+//-   script.
+//-     function dispatch(path){
+//-       window.location.href=path
+//-     }
+
+extends layout
 block content
   h1= title
-  - var lo = results
+  - let result = results;
+  a(class="btn btn-success" href="/hotels/create") Create
+  div(class="container-fluid mt-3")
+    div(class="row m-1")
+      each result,index in results
+        - let destination = `dispatch(\"/hotels/update?id=${result._id}\")`
+        div(class="col-sm-2" onclick=`buy(${index})`)  #{result.hotels_location} -  #{result.hotels_numrooms} - #{result.hotels_rating}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          a(class="btn btn-danger" href=`/hotels/delete?id=${result._id}`) Delete
+          a(class="btn btn-dark" href=`/hotels/detail?id=${result._id}`) Details
+  br
   div(class="container-fluid")
-  div(class="row")
-   each l,index  in lo
-    div(class="col-sm-2" onclick =`buy(${index})`) #{l.hotels_location}, #{l.hotels_numrooms}, #{l.hotels_rating}
-    script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        }
+    div(class="row")
+      - for(var i=0;i<results.length;i++) {
+        div(class="col-sm-2" width="215px" onClick=`buy(${i+1})`) #{results[i].hotels_location}
+      -}
+  script. 
+    function buy(indexNum) {
+      alert(`You purchased item ${indexNum}`);
+    }
+    function dispatch(path){ 
+      window.location.href=path 
+    }
